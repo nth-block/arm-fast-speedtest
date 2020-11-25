@@ -25,7 +25,7 @@ function getFastSpeedTest(fastToken)
     });
      
     speedtest.getSpeed().then(s => {
-        console.log(`${(new Date()).toISOString()}: `+ JSON.stringify(
+        console.log(JSON.stringify(
             {
                 "Time": `${(new Date()).toISOString()}`,
                 "Speed (Mbps)": `${s}`
