@@ -1,4 +1,4 @@
-{
+module.exports = {
     "eventHubName": "",
     "eventHubConnectionString": ""
 }
