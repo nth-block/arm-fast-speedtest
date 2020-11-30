@@ -3,9 +3,7 @@
 
 const FastSpeedtest = require("fast-speedtest-api");
 const fs = require('fs');
-const {
-    EventHubProducerClient
-} = require('@azure/event-hubs');
+const {EventHubProducerClient} = require('@azure/event-hubs');
 const EVENT_HUB_CONFIG = require('./event-hub-info');
 const TOKEN = require('./token');
 
@@ -23,12 +21,10 @@ function getFastSpeedTest() {
 
     speedtest.getSpeed().then(async s => {
 
-        let speedReport = {
-            "Time": `${(new Date()).toISOString()}`,
-            "Speed (Mbps)": `${s}`
-        };
+        let speedReport = {"Time": `${(new Date()).toISOString()}`, "Speed (Mbps)": `${s}`};
 
         const producer = new EventHubProducerClient(EVENT_HUB_CONFIG.eventHubConnectionString, EVENT_HUB_CONFIG.eventHubName);
+        const partitions = await producer.getPartitionIds();
         const batch = await producer.createBatch({
             partitionId: 0
         });
@@ -42,6 +38,6 @@ function getFastSpeedTest() {
 }
 
 // Entrypoint of the program
-setInterval(function(){getFastSpeedTest()}, 60*1000);
+// setInterval(function(){getFastSpeedTest()}, 60*1000);
 
-// getFastSpeedTest();
+getFastSpeedTest();
