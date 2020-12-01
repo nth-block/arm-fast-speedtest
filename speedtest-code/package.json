@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@azure/event-hubs": "^5.3.1",
-    "fast-speedtest-api": "^0.3.2"
+    "fast-speedtest-api": "^0.3.2",
+    "request": "^2.88.2"
   }
 }
